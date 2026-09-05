@@ -1,0 +1,14 @@
+{
+  "id": "scene_true_start",
+  "start": "n1",
+  "background": "classroom",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "dialogue",
+      "text": "Второй учебный год начинается по-новому — теперь ты знаешь, чего действительно хочешь.",
+      "next": "n2"
+    },
+    {"id": "n2", "type": "ending", "category": "true", "route": "route_true"}
+  ]
+}

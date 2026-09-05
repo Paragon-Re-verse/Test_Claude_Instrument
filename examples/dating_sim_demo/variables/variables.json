@@ -1,0 +1,7 @@
+[
+  {
+    "name": "affection_alice",
+    "type": "int",
+    "default": 0
+  }
+]

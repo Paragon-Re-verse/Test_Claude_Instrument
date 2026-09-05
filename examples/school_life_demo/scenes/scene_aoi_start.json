@@ -1,0 +1,24 @@
+{
+  "id": "scene_aoi_start",
+  "start": "n1",
+  "background": "cafe",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "dialogue",
+      "character": "aoi",
+      "emotion": "happy",
+      "text": "Знаешь, я не думала, что скажу это, но... я рада, что ты рядом.",
+      "next": "n2"
+    },
+    {
+      "id": "n2",
+      "type": "condition",
+      "condition": {"var": "affection_aoi", "op": ">=", "value": 20},
+      "then": "n3",
+      "else": "n4"
+    },
+    {"id": "n3", "type": "ending", "category": "normal", "route": "route_aoi"},
+    {"id": "n4", "type": "ending", "category": "bad", "route": "route_aoi"}
+  ]
+}

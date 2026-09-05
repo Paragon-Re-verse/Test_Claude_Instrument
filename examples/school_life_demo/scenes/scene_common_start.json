@@ -1,0 +1,7 @@
+{
+  "id": "scene_common_start",
+  "start": "n1",
+  "nodes": [
+    {"id": "n1", "type": "dialogue", "text": "Новый учебный год начинается...", "next": "@calendar_loop"}
+  ]
+}

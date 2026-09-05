@@ -1,0 +1,23 @@
+{
+  "id": "scene_meet_yuki",
+  "start": "n1",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "dialogue",
+      "character": "yuki",
+      "emotion": "happy",
+      "text": "Доброе утро! Составишь мне компанию на обед?",
+      "next": "n2"
+    },
+    {
+      "id": "n2",
+      "type": "choice",
+      "text": "Что ответить?",
+      "options": [
+        {"text": "С удовольствием!", "next": null, "effects": [{"var": "affection_yuki", "op": "+=", "value": 15}]},
+        {"text": "Извини, дела.", "next": null, "effects": [{"var": "affection_yuki", "op": "-=", "value": 5}]}
+      ]
+    }
+  ]
+}

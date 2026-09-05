@@ -1,0 +1,5 @@
+[
+  {"id": "school", "name": "Школа", "background": "classroom", "available_slots": ["Утро", "День"]},
+  {"id": "cafe", "name": "Кафе", "background": "cafe", "available_slots": ["День", "Вечер"]},
+  {"id": "park", "name": "Парк", "background": "park"}
+]

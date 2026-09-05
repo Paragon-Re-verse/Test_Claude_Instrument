@@ -1,0 +1,6 @@
+{
+  "name": "Свидание в парке",
+  "resolution": [1280, 720],
+  "language": "ru",
+  "start_scene": "scene_intro"
+}

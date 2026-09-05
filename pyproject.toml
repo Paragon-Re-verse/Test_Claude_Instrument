@@ -1,0 +1,18 @@
+[project]
+name = "vnstudio"
+version = "0.1.0"
+description = "No-code редактор визуальных новелл поверх Ren'Py (codegen + headless build слои)"
+requires-python = ">=3.10"
+dependencies = [
+    "Jinja2>=3.1",
+]
+
+[project.scripts]
+vnstudio = "vnstudio.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["vnstudio*"]

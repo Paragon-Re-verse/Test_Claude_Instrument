@@ -1,0 +1,7 @@
+{
+  "name": "Школьные дни",
+  "resolution": [1280, 720],
+  "language": "ru",
+  "start_scene": "scene_common_start",
+  "stats_display": "hidden"
+}

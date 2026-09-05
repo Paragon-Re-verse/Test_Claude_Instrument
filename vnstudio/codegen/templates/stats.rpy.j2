@@ -1,0 +1,20 @@
+{# Автосгенерировано vnstudio. Генерируется, только если project.stats_display == "bar" #}
+{# и есть хотя бы одна переменная с visible=true. При stats_display == "hidden" статы    #}
+{# по-прежнему считаются (см. variables.rpy), но этот экран/оверлей не создаётся вовсе — #}
+{# то есть очки для игрока невидимы совсем, как в Fate/stay night.                       #}
+screen vnstudio_stats():
+    zorder 100
+    vbox:
+        xalign 1.0
+        yalign 0.0
+        background "#0008"
+        padding (12, 8)
+{% for var in visible_variables %}
+        hbox:
+            spacing 6
+            text "{{ var.label }}:"
+            text "[{{ var.name }}]"
+{% endfor %}
+
+init python:
+    config.overlay_screens.append("vnstudio_stats")

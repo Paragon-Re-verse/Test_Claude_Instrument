@@ -1,0 +1,51 @@
+{# Автосгенерировано vnstudio из scenes/{{ scene.id }}.json. Не редактировать вручную. #}
+label {{ scene.id }}:
+{% if scene.background %}
+    scene bg {{ scene.background }}
+{% endif %}
+{% if scene.music %}
+    play music "{{ scene.music }}"
+{% endif %}
+    jump {{ scene.start_label }}
+
+{% for node in scene.nodes %}
+label {{ node.label }}:
+{% if node.kind == "dialogue" %}
+{% if node.show_stmt %}
+    show {{ node.show_stmt }}
+{% endif %}
+{% if node.character %}
+    {{ node.character }} "{{ node.text }}"
+{% else %}
+    "{{ node.text }}"
+{% endif %}
+    {{ node.next_stmt }}
+{% elif node.kind == "choice" %}
+    menu:
+{% if node.prompt %}
+        "{{ node.prompt }}"
+{% endif %}
+{% for opt in node.options %}
+        "{{ opt.text }}":
+{% for eff in opt.effect_stmts %}
+            $ {{ eff }}
+{% endfor %}
+            {{ opt.next_stmt }}
+{% endfor %}
+{% elif node.kind == "condition" %}
+    if {{ node.expr }}:
+        {{ node.then_stmt }}
+    else:
+        {{ node.else_stmt }}
+{% elif node.kind == "ending" %}
+{% if node.route %}
+    if "{{ node.route }}" not in persistent.vnstudio_completed_routes:
+        $ persistent.vnstudio_completed_routes.append("{{ node.route }}")
+{% endif %}
+    stop music fadeout 1.0
+    centered "{size=+30}{color={{ node.color }}}{{ node.text }}{/color}{/size}"
+    pause 3.0
+    return
+{% endif %}
+
+{% endfor %}

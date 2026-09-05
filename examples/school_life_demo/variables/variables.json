@@ -1,0 +1,4 @@
+[
+  {"name": "affection_yuki", "type": "int", "default": 0, "visible": false, "label": "Юки"},
+  {"name": "affection_aoi", "type": "int", "default": 0, "visible": false, "label": "Аой"}
+]
