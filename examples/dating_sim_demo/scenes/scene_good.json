@@ -1,0 +1,15 @@
+{
+  "id": "scene_good",
+  "background": "cafe",
+  "start": "n1",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "dialogue",
+      "character": "alice",
+      "emotion": "happy",
+      "text": "Пойдём в кафе, я знаю отличное место!",
+      "next": null
+    }
+  ]
+}

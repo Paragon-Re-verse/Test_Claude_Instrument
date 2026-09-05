@@ -1,0 +1,9 @@
+{# Автосгенерировано vnstudio. Не редактировать вручную — правки будут перезаписаны. #}
+{% for char in characters %}
+{% for emotion, file in char.sprites.items() %}
+image {{ char.id }} {{ emotion }} = "characters/{{ char.id }}/{{ file }}"
+{% endfor %}
+{% endfor %}
+{% for bg in backgrounds %}
+image bg {{ bg.id }} = "backgrounds/{{ bg.file }}"
+{% endfor %}

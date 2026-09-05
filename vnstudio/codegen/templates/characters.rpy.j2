@@ -1,0 +1,4 @@
+{# Автосгенерировано vnstudio. Не редактировать вручную — правки будут перезаписаны. #}
+{% for char in characters %}
+define {{ char.id }} = Character("{{ char.name }}", color="{{ char.color }}")
+{% endfor %}

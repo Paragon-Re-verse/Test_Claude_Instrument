@@ -1,0 +1,12 @@
+{# Автосгенерировано vnstudio из project.json. Не редактировать вручную. #}
+define config.name = "{{ project.name }}"
+define gui.about = ""
+define config.version = "1.0"
+
+define build.name = "{{ project.name }}"
+
+define config.screen_width = {{ project.resolution[0] }}
+define config.screen_height = {{ project.resolution[1] }}
+
+label start:
+    jump {{ project.start_scene }}

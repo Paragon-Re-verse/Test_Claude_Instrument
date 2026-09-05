@@ -1,0 +1,46 @@
+{
+  "id": "scene_intro",
+  "background": "park",
+  "music": "theme",
+  "start": "n1",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "dialogue",
+      "text": "Ты приходишь в парк на первое свидание.",
+      "next": "n2"
+    },
+    {
+      "id": "n2",
+      "type": "dialogue",
+      "character": "alice",
+      "emotion": "happy",
+      "text": "Привет! Я не была уверена, что ты придёшь.",
+      "next": "n3"
+    },
+    {
+      "id": "n3",
+      "type": "choice",
+      "text": "Что ответить?",
+      "options": [
+        {
+          "text": "Конечно, я не мог пропустить встречу с тобой!",
+          "next": "n4",
+          "effects": [{"var": "affection_alice", "op": "+=", "value": 20}]
+        },
+        {
+          "text": "Извини, чуть не забыл про встречу.",
+          "next": "n4",
+          "effects": [{"var": "affection_alice", "op": "-=", "value": 10}]
+        }
+      ]
+    },
+    {
+      "id": "n4",
+      "type": "condition",
+      "condition": {"var": "affection_alice", "op": ">=", "value": 15},
+      "then": "@scene_good",
+      "else": "@scene_bad"
+    }
+  ]
+}

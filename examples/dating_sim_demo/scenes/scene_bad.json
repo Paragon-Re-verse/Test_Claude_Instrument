@@ -1,0 +1,15 @@
+{
+  "id": "scene_bad",
+  "background": "park",
+  "start": "n1",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "dialogue",
+      "character": "alice",
+      "emotion": "sad",
+      "text": "Ладно... Может, в другой раз.",
+      "next": null
+    }
+  ]
+}
