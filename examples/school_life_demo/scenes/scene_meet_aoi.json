@@ -1,0 +1,23 @@
+{
+  "id": "scene_meet_aoi",
+  "start": "n1",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "dialogue",
+      "character": "aoi",
+      "emotion": "neutral",
+      "text": "О, привет. Не ожидала тебя здесь встретить.",
+      "next": "n2"
+    },
+    {
+      "id": "n2",
+      "type": "choice",
+      "text": "Что ответить?",
+      "options": [
+        {"text": "Просто решил заглянуть.", "next": null, "effects": [{"var": "affection_aoi", "op": "+=", "value": 10}]},
+        {"text": "Ошибся кафе.", "next": null, "effects": [{"var": "affection_aoi", "op": "-=", "value": 5}]}
+      ]
+    }
+  ]
+}

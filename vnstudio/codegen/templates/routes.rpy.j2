@@ -1,0 +1,28 @@
+{# Автосгенерировано vnstudio из routes/routes.json. Не редактировать вручную. #}
+{# persistent -> сохраняется между запусками игры, это и даёт route-gating   #}
+{# ("пройди маршрут A, чтобы открылся маршрут B") в духе Fate/stay night.    #}
+default persistent.vnstudio_completed_routes = []
+
+init python:
+    vnstudio_routes = {{ routes_literal }}
+
+label resolve_routes:
+    python:
+        _vnstudio_picked = None
+        for _vnstudio_route in vnstudio_routes:
+            if _vnstudio_route["requires"] and _vnstudio_route["requires"] not in persistent.vnstudio_completed_routes:
+                continue
+            if _vnstudio_route["id"] in persistent.vnstudio_completed_routes:
+                continue
+            if not vnstudio_check_condition(_vnstudio_route["condition"]):
+                continue
+            _vnstudio_picked = _vnstudio_route
+            break
+        if _vnstudio_picked is None:
+            renpy.jump("vnstudio_no_route_available")
+        else:
+            renpy.jump(_vnstudio_picked["start_scene"])
+
+label vnstudio_no_route_available:
+    centered "Ни один маршрут не подходит под текущие условия — проверьте routes/routes.json."
+    return

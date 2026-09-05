@@ -1,0 +1,16 @@
+{
+  "id": "scene_yuki_start",
+  "start": "n1",
+  "background": "park",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "dialogue",
+      "character": "yuki",
+      "emotion": "happy",
+      "text": "Я рада, что мы стали так близки за это время.",
+      "next": "n2"
+    },
+    {"id": "n2", "type": "ending", "category": "normal", "route": "route_yuki"}
+  ]
+}

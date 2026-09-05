@@ -1,0 +1,70 @@
+{# Автосгенерировано vnstudio из calendar/, locations/, schedule/. Не редактировать вручную. #}
+default current_day = 0
+default current_slot = 0
+default vnstudio_triggered_events = set()
+
+define vnstudio_day_names = {{ day_names_literal }}
+define vnstudio_slots = {{ slots_literal }}
+define vnstudio_day_count = {{ day_count }}
+
+init python:
+    vnstudio_schedule = {{ schedule_literal }}
+
+    def vnstudio_find_event(day, slot, location):
+        candidates = []
+        for ev in vnstudio_schedule:
+            if ev["location"] != location:
+                continue
+            if ev["day"] != "any" and ev["day"] != day:
+                continue
+            if ev["slot"] != "any" and ev["slot"] != slot:
+                continue
+            if ev["once"] and ev["id"] in vnstudio_triggered_events:
+                continue
+            if not vnstudio_check_condition(ev["condition"]):
+                continue
+            candidates.append(ev)
+        if not candidates:
+            return None
+        candidates.sort(key=lambda e: -e["priority"])
+        return candidates[0]
+
+label calendar_loop:
+    if current_day >= vnstudio_day_count:
+        jump {{ on_end_target }}
+    $ _vnstudio_day_name = vnstudio_day_names[current_day % len(vnstudio_day_names)]
+    $ _vnstudio_slot_name = vnstudio_slots[current_slot]
+    menu:
+        "[_vnstudio_day_name], [_vnstudio_slot_name]"
+{% for loc in locations %}
+{% if loc.slot_filter %}
+        "{{ loc.name }}" if vnstudio_slots[current_slot] in {{ loc.slot_filter }}:
+            jump vnstudio_location_{{ loc.id }}
+{% else %}
+        "{{ loc.name }}":
+            jump vnstudio_location_{{ loc.id }}
+{% endif %}
+{% endfor %}
+
+{% for loc in locations %}
+label vnstudio_location_{{ loc.id }}:
+{% if loc.background %}
+    scene bg {{ loc.background }}
+{% endif %}
+    python:
+        _vnstudio_event = vnstudio_find_event(current_day, vnstudio_slots[current_slot], "{{ loc.id }}")
+        if _vnstudio_event is not None and _vnstudio_event["once"]:
+            vnstudio_triggered_events.add(_vnstudio_event["id"])
+    if _vnstudio_event is not None:
+        $ renpy.call(_vnstudio_event["scene"])
+    else:
+        "Ничего не происходит."
+    jump vnstudio_advance_slot
+
+{% endfor %}
+label vnstudio_advance_slot:
+    $ current_slot += 1
+    if current_slot >= len(vnstudio_slots):
+        $ current_slot = 0
+        $ current_day += 1
+    jump calendar_loop

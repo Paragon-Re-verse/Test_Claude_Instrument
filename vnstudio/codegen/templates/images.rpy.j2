@@ -1,8 +1,11 @@
 {# Автосгенерировано vnstudio. Не редактировать вручную — правки будут перезаписаны. #}
-{% for char in characters %}
-{% for emotion, file in char.sprites.items() %}
-image {{ char.id }} {{ emotion }} = "characters/{{ char.id }}/{{ file }}"
-{% endfor %}
+{% if has_live2d %}
+# Live2D — экспериментальная интеграция. Live2D(...) — проверьте сигнатуру под вашей
+# версией Ren'Py и наличие Live2D-рантайма/лицензии в SDK перед сборкой релиза.
+{% endif %}
+{% for block in character_image_blocks %}
+{{ block }}
+
 {% endfor %}
 {% for bg in backgrounds %}
 image bg {{ bg.id }} = "backgrounds/{{ bg.file }}"

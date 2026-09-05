@@ -1,0 +1,7 @@
+{
+  "id": "scene_evening_walk",
+  "start": "n1",
+  "nodes": [
+    {"id": "n1", "type": "dialogue", "text": "Вечерний парк тих и пуст — почти никого, кроме случайных прохожих.", "next": null}
+  ]
+}

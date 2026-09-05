@@ -37,6 +37,15 @@ label {{ node.label }}:
         {{ node.then_stmt }}
     else:
         {{ node.else_stmt }}
+{% elif node.kind == "ending" %}
+{% if node.route %}
+    if "{{ node.route }}" not in persistent.vnstudio_completed_routes:
+        $ persistent.vnstudio_completed_routes.append("{{ node.route }}")
+{% endif %}
+    stop music fadeout 1.0
+    centered "{size=+30}{color={{ node.color }}}{{ node.text }}{/color}{/size}"
+    pause 3.0
+    return
 {% endif %}
 
 {% endfor %}

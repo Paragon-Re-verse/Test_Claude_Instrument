@@ -1,0 +1,23 @@
+{# Автосгенерировано vnstudio. Не редактировать вручную. #}
+{# Общий помощник для condition-словарей {var, op, value|compare_var}: #}
+{# используется маршрутами (routes.rpy) и расписанием (calendar.rpy).   #}
+init -1 python:
+    import store as _vnstudio_store
+    import operator as _vnstudio_operator
+
+    _VNSTUDIO_OPS = {
+        ">": _vnstudio_operator.gt,
+        "<": _vnstudio_operator.lt,
+        ">=": _vnstudio_operator.ge,
+        "<=": _vnstudio_operator.le,
+        "==": _vnstudio_operator.eq,
+        "!=": _vnstudio_operator.ne,
+    }
+
+    def vnstudio_check_condition(cond):
+        """cond — {"var", "op", "value"} или {"var", "op", "compare_var"}, либо None (всегда истина)."""
+        if cond is None:
+            return True
+        left = getattr(_vnstudio_store, cond["var"])
+        right = getattr(_vnstudio_store, cond["compare_var"]) if cond.get("compare_var") else cond["value"]
+        return _VNSTUDIO_OPS[cond["op"]](left, right)

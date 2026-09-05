@@ -1,0 +1,13 @@
+[
+  {
+    "id": "yuki",
+    "name": "Юки",
+    "color": "#ff99cc",
+    "animation": {"type": "sprite", "fps": 2}
+  },
+  {
+    "id": "aoi",
+    "name": "Аой",
+    "color": "#99ccff"
+  }
+]

@@ -1,0 +1,5 @@
+[
+  {"id": "ev_yuki", "location": "school", "scene": "scene_meet_yuki", "day": 0, "slot": "Утро", "once": true, "priority": 1},
+  {"id": "ev_aoi", "location": "cafe", "scene": "scene_meet_aoi", "day": 0, "slot": "День", "once": true, "priority": 1},
+  {"id": "ev_walk", "location": "park", "scene": "scene_evening_walk", "day": 1, "slot": "Вечер", "once": true, "priority": 1}
+]

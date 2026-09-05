@@ -1,0 +1,20 @@
+[
+  {
+    "id": "route_yuki",
+    "name": "Маршрут Юки",
+    "start_scene": "scene_yuki_start",
+    "condition": {"var": "affection_yuki", "op": ">", "compare_var": "affection_aoi"}
+  },
+  {
+    "id": "route_aoi",
+    "name": "Маршрут Аой",
+    "start_scene": "scene_aoi_start",
+    "condition": {"var": "affection_aoi", "op": ">", "compare_var": "affection_yuki"}
+  },
+  {
+    "id": "route_true",
+    "name": "Истинный маршрут",
+    "start_scene": "scene_true_start",
+    "requires": "route_yuki"
+  }
+]
